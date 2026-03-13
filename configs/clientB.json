@@ -1,0 +1,13 @@
+{
+  "appName": "Beta App",
+  "apiUrl": "https://api.beta-solutions.com",
+  "primaryColor": "#43A047",
+  "secondaryColor": "#2E7D32",
+  "accentColor": "#B9F6CA",
+  "logoPath": "assets/brands/clientB_logo.svg",
+  "iconPath": "assets/icons/clientB_icon.png",
+  "supportEmail": "support@beta-solutions.com",
+  "websiteUrl": "https://www.beta-solutions.com",
+  "termsUrl": "https://www.beta-solutions.com/terms",
+  "privacyUrl": "https://www.beta-solutions.com/privacy"
+}

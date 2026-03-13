@@ -1,0 +1,10 @@
+# Appfile — shared app identifiers used by Fastlane lanes.
+# Per-client IDs are overridden inside each lane via the `client` option.
+
+# Android
+# package_name("com.example.flutter_flavors")
+
+# iOS
+# app_identifier("com.example.flutter_flavors")
+# apple_id("your@apple.id")
+# team_id("YOUR_TEAM_ID")

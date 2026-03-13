@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Client A (Alpha App) string resources.
+  These override the values in src/main/res/values/strings.xml for the clientA flavor.
+-->
+<resources>
+    <string name="app_name">Alpha App</string>
+</resources>

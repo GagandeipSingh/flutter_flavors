@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" rx="32" fill="#43A047"/>
+  <circle cx="100" cy="100" r="70" fill="#2E7D32" opacity="0.4"/>
+  <text x="100" y="120" font-family="Arial, sans-serif" font-size="90" font-weight="bold"
+        text-anchor="middle" fill="white">B</text>
+  <text x="100" y="185" font-family="Arial, sans-serif" font-size="18" font-weight="600"
+        text-anchor="middle" fill="#C8E6C9" letter-spacing="5">BETA</text>
+</svg>

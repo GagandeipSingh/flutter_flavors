@@ -1,0 +1,13 @@
+{
+  "appName": "Alpha App",
+  "apiUrl": "https://api.alpha-corp.com",
+  "primaryColor": "#1E88E5",
+  "secondaryColor": "#1565C0",
+  "accentColor": "#82B1FF",
+  "logoPath": "assets/brands/clientA_logo.svg",
+  "iconPath": "assets/icons/clientA_icon.png",
+  "supportEmail": "support@alpha-corp.com",
+  "websiteUrl": "https://www.alpha-corp.com",
+  "termsUrl": "https://www.alpha-corp.com/terms",
+  "privacyUrl": "https://www.alpha-corp.com/privacy"
+}

@@ -1,0 +1,39 @@
+name: flutter_flavors
+description: "White-label Flutter app demonstrating per-client branding via flavors."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.11.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  flutter_svg: ^2.0.10+1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.3
+  flutter_native_splash: ^2.4.7
+
+flutter_native_splash:
+  color: "#000000"
+  image: assets/black_bg.png
+  android: true
+  ios: true
+  android_12:
+    image: assets/black_bg.png
+    icon_background_color: "#000000"
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - configs/
+    - assets/brands/
+    - assets/icons/
+    - assets/black_bg.png

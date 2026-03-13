@@ -1,0 +1,124 @@
+# Fastfile — White-Label build automation
+#
+# Prerequisites:
+#   gem install fastlane
+#   cd <project_root> && fastlane <lane> [options]
+#
+# Android examples:
+#   fastlane android build_apk client:clientA
+#   fastlane android build_aab client:clientB
+#   fastlane android build_all
+#
+# iOS examples:
+#   fastlane ios build_ipa client:clientA
+#   fastlane ios build_all
+
+CLIENTS = %w[clientA clientB].freeze
+
+# ── Shared helpers ────────────────────────────────────────────────────────────
+
+def flutter_clean_get
+  sh("flutter clean")
+  sh("flutter pub get")
+end
+
+def validate_client!(client)
+  unless CLIENTS.include?(client)
+    UI.user_error!("Unknown client '#{client}'. Valid options: #{CLIENTS.join(', ')}")
+  end
+end
+
+# ── Android ───────────────────────────────────────────────────────────────────
+
+platform :android do
+  desc "Build a debug APK for a specific client\n" \
+       "Options: client (clientA | clientB)"
+  lane :build_apk_debug do |options|
+    client = options[:client] || "clientA"
+    validate_client!(client)
+    flutter_clean_get
+    sh("flutter build apk " \
+       "--flavor #{client} " \
+       "--dart-define=FLAVOR=#{client} " \
+       "--debug")
+    UI.success("Debug APK ready for #{client}")
+  end
+
+  desc "Build a release APK for a specific client\n" \
+       "Options: client (clientA | clientB)"
+  lane :build_apk do |options|
+    client = options[:client] || "clientA"
+    validate_client!(client)
+    flutter_clean_get
+    sh("flutter build apk " \
+       "--flavor #{client} " \
+       "--dart-define=FLAVOR=#{client} " \
+       "--release")
+    UI.success("Release APK ready → build/app/outputs/flutter-apk/app-#{client}-release.apk")
+  end
+
+  desc "Build a release AAB (Play Store) for a specific client\n" \
+       "Options: client (clientA | clientB)"
+  lane :build_aab do |options|
+    client = options[:client] || "clientA"
+    validate_client!(client)
+    flutter_clean_get
+    sh("flutter build appbundle " \
+       "--flavor #{client} " \
+       "--dart-define=FLAVOR=#{client} " \
+       "--release")
+    UI.success("Release AAB ready → build/app/outputs/bundle/#{client}Release/")
+  end
+
+  desc "Build release APKs for ALL clients"
+  lane :build_all do
+    CLIENTS.each { |client| build_apk(client: client) }
+    UI.success("All client APKs built successfully!")
+  end
+
+  desc "Build release AABs for ALL clients"
+  lane :build_all_aab do
+    CLIENTS.each { |client| build_aab(client: client) }
+    UI.success("All client AABs built successfully!")
+  end
+
+  desc "Run Flutter tests"
+  lane :test do
+    sh("flutter test")
+  end
+
+  desc "Run tests then build APKs for all clients"
+  lane :ci do
+    test
+    build_all
+  end
+end
+
+# ── iOS ───────────────────────────────────────────────────────────────────────
+
+platform :ios do
+  desc "Build an IPA for a specific client\n" \
+       "Options: client (clientA | clientB)"
+  lane :build_ipa do |options|
+    client = options[:client] || "clientA"
+    validate_client!(client)
+    flutter_clean_get
+    sh("flutter build ipa " \
+       "--flavor #{client} " \
+       "--dart-define=FLAVOR=#{client} " \
+       "--release " \
+       "--export-options-plist=ios/ExportOptions.plist")
+    UI.success("IPA ready → build/ios/ipa/")
+  end
+
+  desc "Build IPAs for ALL clients"
+  lane :build_all do
+    CLIENTS.each { |client| build_ipa(client: client) }
+    UI.success("All client IPAs built successfully!")
+  end
+
+  desc "Run Flutter tests"
+  lane :test do
+    sh("flutter test")
+  end
+end

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Default app name — overridden per flavor via resValue() in build.gradle.kts -->
+<resources>
+    <string name="app_name">Flutter Flavors</string>
+</resources>
